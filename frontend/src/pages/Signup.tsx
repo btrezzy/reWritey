@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import BlogHeader from "./BlogHeader"
 
 export default function Signup() {
+
+
   return (
     <div className="flex flex-col min-h-screen">
         
@@ -38,7 +40,7 @@ export default function Signup() {
             </div>
             <div  className="font-medium">
                 Already have an account? 
-                <Link to="#" className=" hover:underline mx-2" >
+                <Link to="/signin" className=" hover:underline mx-2 underline" >
                   Sign in  
                   </Link>
             </div>

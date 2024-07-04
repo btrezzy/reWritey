@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 
+
 export default function Header() {
+   
+  const isSignupPage = window.location.pathname === "/signup";
+
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center">
-      <Link to="#" className="flex items-center justify-center">
+      <Link to="/" className="flex items-center justify-center">
         <PenIcon className="h-6 w-6" />
         <span className="ml-2 font-bold text-lg">rewritey</span>
       </Link>
@@ -21,10 +25,10 @@ export default function Header() {
           About
         </Link>
         <Link
-          to="#"
+          to={isSignupPage ? "/signin" : "/signup"}
           className="text-sm font-medium hover:underline underline-offset-4"
         >
-          Signup
+          {isSignupPage ? "Sign In" : "Sign Up"}
         </Link>
       </nav>
     </header>

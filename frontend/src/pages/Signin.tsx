@@ -13,7 +13,7 @@ export default function Signin() {
 
       <main className="flex-1 container mx-auto py-8 px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-background shadow-lg rounded-lg p-8">
-          <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
+          <h1 className="text-3xl font-bold mb-4">Sign In</h1>
           <form className="space-y-4">
             
             <div>
@@ -35,7 +35,7 @@ export default function Signin() {
               </Link>
             </div>
             <Button type="submit" className="w-full">
-              Sign Up
+              Sign In
             </Button>
           </form>
         </div>
