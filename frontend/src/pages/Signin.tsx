@@ -1,11 +1,43 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import BlogHeader from "./BlogHeader"
+import { SigninInputType } from "@neerajk11/blog-common"
+import { useState } from "react"
+import axios from "axios"
 
 export default function Signin() {
+
+  const navigate = useNavigate();
+
+  const [inputs, setInputs] = useState<SigninInputType>({
+    username: "",
+    password: "",
+  });
+  
+  async function fetchData(event: any) {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8787/api/v1/user/signin",
+        inputs
+      );
+
+      const jwt = response.data.jwt;
+      if (!jwt) {
+        return alert("Wrong username or password");
+      }
+      localStorage.setItem("token", jwt);
+      console.log(jwt);
+      navigate("/blogs");
+    } catch (error) {
+      alert("Error while signing up");
+    }
+  }
+
+
   return (
     <div className="flex flex-col min-h-screen">
         
@@ -14,15 +46,20 @@ export default function Signin() {
       <main className="flex-1 container mx-auto py-8 px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-background shadow-lg rounded-lg p-8">
           <h1 className="text-3xl font-bold mb-4">Sign In</h1>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={fetchData}>
             
             <div>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" />
+              <Label htmlFor="email" >Email</Label>
+              <Input id="email" type="email" placeholder="Enter your email" onChange={ (e) =>{
+                setInputs({...inputs, username: e.target.value})
+              }} />
             </div>
             <div>
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" placeholder="Enter a password" />
+              <Input id="password" type="password" placeholder="Enter a password"  onChange={(e)=>{
+                setInputs({...inputs, password: e.target.value})
+              
+              }} />
             </div>
           
           <div className="flex items-center justify-between">

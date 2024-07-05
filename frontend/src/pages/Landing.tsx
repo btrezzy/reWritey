@@ -5,17 +5,10 @@ import landingImage3 from "../assets/landingImage3.jpg";
 import landingLastImage from "../assets/landingLastImage.jpg";
 import BlogHeader from "./BlogHeader";
 
-
-
-
-
 export default function Landing() {
   return (
-
     <div className="flex flex-col min-h-[100dvh]">
-         
-         <BlogHeader />
-
+      <BlogHeader />
 
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32">
@@ -33,7 +26,7 @@ export default function Landing() {
                   </p>
                 </div>
                 <Link
-                  to = "/signup"
+                  to="/signup"
                   className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 >
                   Read the Blog
@@ -82,11 +75,11 @@ export default function Landing() {
                     </p>
                   </div>
                   <Link
-                    to = "/signup"
+                    to="/signup"
                     className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   >
-                    Read More 
-                  </Link> 
+                    Read More
+                  </Link>
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
@@ -108,7 +101,7 @@ export default function Landing() {
                     </p>
                   </div>
                   <Link
-                    to = "/signup"
+                    to="/signup"
                     className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   >
                     Read More
@@ -134,7 +127,7 @@ export default function Landing() {
                     </p>
                   </div>
                   <Link
-                    to = "/signup"
+                    to="/signup"
                     className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   >
                     Read More
@@ -150,16 +143,20 @@ export default function Landing() {
           &copy; 2024 rewritey. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link to = "/signup" className="text-xs hover:underline underline-offset-4">
+          <Link
+            to="/signup"
+            className="text-xs hover:underline underline-offset-4"
+          >
             Terms of Service
           </Link>
-          <Link to = "/signup" className="text-xs hover:underline underline-offset-4">
+          <Link
+            to="/signup"
+            className="text-xs hover:underline underline-offset-4"
+          >
             Privacy Policy
           </Link>
         </nav>
       </footer>
     </div>
-    
   );
 }
-

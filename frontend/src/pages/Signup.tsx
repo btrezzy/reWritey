@@ -1,50 +1,102 @@
-import { Link } from "react-router-dom"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
-import BlogHeader from "./BlogHeader"
+import { Link, useNavigate } from "react-router-dom";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import BlogHeader from "./BlogHeader";
+import { useState } from "react";
+import { SignupInputType } from "@neerajk11/blog-common";
+import axios from "axios";
 
 export default function Signup() {
+  const navigate = useNavigate();
 
+  const [inputs, setInputs] = useState<SignupInputType>({
+    name: "",
+    username: "",
+    password: "",
+  });
+
+  //  const BACKEND_URL = "https://backend.nirajkumarpatel21.workers.dev";
+  //  const now = "http://127.0.0.1:8787"
+
+  async function fetchData(event: any) {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8787/api/v1/user/signup",
+        inputs
+      );
+
+      const jwt = response.data.jwt;
+      if (!jwt) {
+        return alert("Wrong password or username");
+      }
+      localStorage.setItem("token", jwt);
+      console.log(jwt);
+      navigate("/blogs");
+    } catch (error) {
+      alert("Error while signing up");
+    }
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
-        
-     <BlogHeader />
+      <BlogHeader />
 
       <main className="flex-1 container mx-auto py-8 px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-background shadow-lg rounded-lg p-8">
           <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
-          <form className="space-y-4">
+          <form onSubmit={fetchData} className="space-y-4">
             <div>
               <Label htmlFor="name">Name</Label>
-              <Input id="name" type="text" placeholder="Enter your name" />
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                onChange={(e) => {
+                  setInputs({ ...inputs, name: e.target.value });
+                }}
+              />
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" />
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                onChange={(e) => {
+                  setInputs({ ...inputs, username: e.target.value });
+                }}
+              />
             </div>
             <div>
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" placeholder="Enter a password" />
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter a password"
+                onChange={(e) => {
+                  setInputs({ ...inputs, password: e.target.value });
+                }}
+              />
             </div>
             <div>
               <Checkbox id="terms" />
               <Label className="mx-3" htmlFor="terms">
                 I agree to the{" "}
-                <Link to="#" className="text-primary hover:underline" >
+                <Link to="#" className="text-primary hover:underline">
                   terms and conditions
                 </Link>
               </Label>
             </div>
-            <div  className="font-medium">
-                Already have an account? 
-                <Link to="/signin" className=" hover:underline mx-2 underline" >
-                  Sign in  
-                  </Link>
+            <div className="font-medium">
+              Already have an account?
+              <Link to="/signin" className=" hover:underline mx-2 underline">
+                Sign in
+              </Link>
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" onClick={fetchData}>
               Sign Up
             </Button>
           </form>
@@ -67,12 +119,11 @@ export default function Signup() {
           </ul>
         </div>
       </main>
-      
     </div>
-  )
+  );
 }
 
-function CheckIcon(props :any) {
+function CheckIcon(props: any) {
   return (
     <svg
       {...props}
@@ -88,5 +139,5 @@ function CheckIcon(props :any) {
     >
       <path d="M20 6 9 17l-5-5" />
     </svg>
-  )
+  );
 }
