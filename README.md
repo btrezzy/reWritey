@@ -1,6 +1,6 @@
-# rewritey
+# rewritey 
 
-Welcome to rewritey! This project is a full-featured blog platform, built using modern web technologies and deployed on Cloudflare Workers.
+Welcome to rewritey! This project is a full-featured blog platform, built using modern web technologies and deployed on Cloudflare Workers. The product is yet on developing stage
 
 ## Features
 
