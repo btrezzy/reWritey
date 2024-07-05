@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
+import { useBlogs } from "@/hooks";
 import Header from "./BlogHeader";
 import BlogStructure from "./BlogStructure";
 import Loading from "./loading";
 
 
-
 export default function Blogs() {
-
-   const [loading, setLoading] = useState(true);
-   const [blogs, setBlogs] = useState({});
-   
+  const { blogs, loading } = useBlogs();
 
   return (
-       
-      <div className="flex flex-col">
-        <Header />
-      
-  
-        <Loading/>
-          
-      
-          
+    <div className="flex flex-col">
+      <Header />
 
-
-      
-      </div>
-
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5 mx-10">
+          {blogs.map((blog) => (
+            <BlogStructure 
+              key={blog.id} 
+              blog={blog} 
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
+
 

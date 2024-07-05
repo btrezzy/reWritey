@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
-
 export default function Header() {
-   
   const isSignupPage = window.location.pathname === "/signup";
 
   return (
@@ -13,13 +11,20 @@ export default function Header() {
       </Link>
       <nav className="ml-auto flex gap-4 sm:gap-6">
         <Link
-          to="#"
+          to="/create"
           className="text-sm font-medium hover:underline underline-offset-4"
         >
-          Blog
+          Create
+        </Link>
+
+        <Link
+          to="/blogs"
+          className="text-sm font-medium hover:underline underline-offset-4"
+        >
+          Blogs
         </Link>
         <Link
-          to="#"
+          to="/about"
           className="text-sm font-medium hover:underline underline-offset-4"
         >
           About
@@ -35,23 +40,21 @@ export default function Header() {
   );
 }
 
-
 function PenIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-      </svg>
-    );
-  }
-  
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+    </svg>
+  );
+}

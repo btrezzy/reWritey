@@ -11,6 +11,7 @@ import axios from "axios"
 export default function Signin() {
 
   const navigate = useNavigate();
+  const [saving , setSaving] = useState(false);
 
   const [inputs, setInputs] = useState<SigninInputType>({
     username: "",
@@ -18,6 +19,7 @@ export default function Signin() {
   });
   
   async function fetchData(event: any) {
+    setSaving(true);
     event.preventDefault();
     try {
       const response = await axios.post(
@@ -31,6 +33,7 @@ export default function Signin() {
       }
       localStorage.setItem("token", jwt);
       console.log(jwt);
+      setSaving(false);
       navigate("/blogs");
     } catch (error) {
       alert("Error while signing up");
@@ -72,7 +75,7 @@ export default function Signin() {
               </Link>
             </div>
             <Button type="submit" className="w-full">
-              Sign In
+             {saving ? "Signing in..." : "Sign In"  }
             </Button>
           </form>
         </div>

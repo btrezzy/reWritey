@@ -10,6 +10,7 @@ import axios from "axios";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const [saving , setSaving] = useState(false);
 
   const [inputs, setInputs] = useState<SignupInputType>({
     name: "",
@@ -21,6 +22,7 @@ export default function Signup() {
   //  const now = "http://127.0.0.1:8787"
 
   async function fetchData(event: any) {
+    setSaving(true);
     event.preventDefault();
     try {
       const response = await axios.post(
@@ -34,6 +36,7 @@ export default function Signup() {
       }
       localStorage.setItem("token", jwt);
       console.log(jwt);
+      setSaving(false);
       navigate("/blogs");
     } catch (error) {
       alert("Error while signing up");
@@ -97,7 +100,7 @@ export default function Signup() {
               </Link>
             </div>
             <Button type="submit" className="w-full" onClick={fetchData}>
-              Sign Up
+              {saving ? "Signing up..." : "Sign Up"}
             </Button>
           </form>
         </div>
