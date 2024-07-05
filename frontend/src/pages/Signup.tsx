@@ -18,15 +18,15 @@ export default function Signup() {
     password: "",
   });
 
-  //  const BACKEND_URL = "https://backend.nirajkumarpatel21.workers.dev";
-  //  const now = "http://127.0.0.1:8787"
+  const BACKEND_URL = "https://backend.nirajkumarpatel21.workers.dev";
+
 
   async function fetchData(event: any) {
     setSaving(true);
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8787/api/v1/user/signup",
+        `${BACKEND_URL}/api/v1/user/signup`,
         inputs
       );
 
